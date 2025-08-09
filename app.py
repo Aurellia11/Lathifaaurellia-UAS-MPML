@@ -72,7 +72,7 @@ def main():
     st.write("Kolom yang dibutuhkan model:", model.named_steps['preprocessor'].get_feature_names_out())
             
             # Validasi kolom
-            required_columns = ['MenuCategory', 'Price']
+    required_columns = ['MenuCategory', 'Price']
             if not all(col in input_data.columns for col in required_columns):
                 st.error(f"Error: Kolom yang dibutuhkan {required_columns} tidak ditemukan")
                 st.stop()
