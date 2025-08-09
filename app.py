@@ -69,7 +69,7 @@ def main():
 
         # ===== TAMBAHKAN DI SINI =====
             # Debug: Tampilkan kolom yang dibutuhkan
-            st.write("Kolom yang dibutuhkan model:", model.named_steps['preprocessor'].get_feature_names_out())
+    st.write("Kolom yang dibutuhkan model:", model.named_steps['preprocessor'].get_feature_names_out())
             
             # Validasi kolom
             required_columns = ['MenuCategory', 'Price']
