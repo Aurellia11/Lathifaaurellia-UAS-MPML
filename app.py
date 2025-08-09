@@ -46,16 +46,15 @@ def load_model():
 
 # Fungsi preprocessing
 @st.cache_resource
-def get_preprocessor():
-    numeric_features = ['Price']
-    categorical_features = ['MenuCategory']
-    
-    preprocessor = ColumnTransformer(
-        transformers=[
-            ('num', StandardScaler(), numeric_features),
-            ('cat', OneHotEncoder(handle_unknown='ignore'), categorical_features)
-        ])
-    return preprocessor
+def load_model():
+    try:
+        # Load model yang sudah termasuk preprocessor fitted
+        model = joblib.load('models/best_model.pkl')
+        st.success("Model dan preprocessor berhasil dimuat!")
+        return model
+    except Exception as e:
+        st.error(f"Gagal memuat model: {str(e)}")
+        return None
 
 # Main Program
 def main():
