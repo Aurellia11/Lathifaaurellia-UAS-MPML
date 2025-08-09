@@ -68,8 +68,8 @@ def main():
         })
         
         # Preprocessing
-        preprocessor = get_preprocessor()
-        processed_data = preprocessor.transform(input_data)
+        if st.button("☑ Prediksi Sekarang", type="primary"):
+        prediction = model.predict(input_data)  # Model akan handle preprocessing otomatis
         
         # Prediksi
         if st.button("🚀 Prediksi Sekarang", type="primary"):
