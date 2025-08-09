@@ -73,9 +73,9 @@ def main():
             
             # Validasi kolom
     required_columns = ['MenuCategory', 'Price']
-            if not all(col in input_data.columns for col in required_columns):
-                st.error(f"Error: Kolom yang dibutuhkan {required_columns} tidak ditemukan")
-                st.stop()
+    if not all(col in input_data.columns for col in required_columns):
+        st.error(f"Error: Kolom yang dibutuhkan {required_columns} tidak ditemukan")
+        st.stop()
             # ============================
         # Preprocessing
         processed_data = model.named_steps['preprocessor'].transform(input_data)
