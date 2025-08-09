@@ -69,7 +69,7 @@ def main():
         
         # Preprocessing
         if model is not None:
-        processed_data = model.named_steps['preprocessor'].transform(input_data)
+            processed_data = model.named_steps['preprocessor'].transform(input_data)
         
         # Prediksi
         if st.button("🚀 Prediksi Sekarang", type="primary"):
