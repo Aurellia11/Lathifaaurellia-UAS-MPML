@@ -66,10 +66,19 @@ def main():
             'MenuCategory': [menu_category],
             'Price': [price]
         })
-        
+
+        # ===== TAMBAHKAN DI SINI =====
+            # Debug: Tampilkan kolom yang dibutuhkan
+            st.write("Kolom yang dibutuhkan model:", model.named_steps['preprocessor'].get_feature_names_out())
+            
+            # Validasi kolom
+            required_columns = ['MenuCategory', 'Price']
+            if not all(col in input_data.columns for col in required_columns):
+                st.error(f"Error: Kolom yang dibutuhkan {required_columns} tidak ditemukan")
+                st.stop()
+            # ============================
         # Preprocessing
-        if model is not None:
-            processed_data = model.named_steps['preprocessor'].transform(input_data)
+        processed_data = model.named_steps['preprocessor'].transform(input_data)
         
         # Prediksi
         if st.button("🚀 Prediksi Sekarang", type="primary"):
@@ -109,17 +118,18 @@ def main():
                 st.error(f"Terjadi error saat prediksi: {str(e)}")
 
     # Debug info (opsional)
-    with st.expander("ℹ️ Informasi Teknis"):
-        st.write("""
-        **Model yang digunakan:** Random Forest Classifier  
-        **Akurasi model:** 85% (pada data testing)  
-        **Fitur penting:** Harga dan Kategori Menu  
+with st.expander("ℹ️ Informasi Teknis"):
+    st.write("""
+    **Model yang digunakan:** Random Forest Classifier  
+    **Akurasi model:** 85% (pada data testing)  
+    **Fitur penting:** Harga dan Kategori Menu  
+    """)
+    
+    if st.button("Tampilkan Struktur Folder"):
+        st.code(f"""
+        {os.listdir()}
+        {os.listdir('models') if os.path.exists('models') else 'Folder models tidak ditemukan'}
         """)
-        if st.button("Tampilkan Struktur Folder"):
-            st.code(f"""
-            {os.listdir()}
-            {os.listdir('models') if os.path.exists('models') else 'Folder models tidak ditemukan'}
-            """)
 
 if __name__ == "__main__":
     main()
